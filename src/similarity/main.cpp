@@ -1,4 +1,7 @@
+#include <cstdint>
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include "utils/helpers.h"
 
 
@@ -59,7 +62,30 @@ if (argc < 2) {
         return 1;
     }
 
-    auto sequences = read_sequence_file(input_file);
+    std::queue<SequencePair> sequences;
+    std::ifstream file(input_file);
+    std::string line;
+    std::string id;
+    std::string sequence;
+
+    std::uint16_t batch_size = 1024;
+
+    while (std::getline(file, line)) {
+        std::stringstream ss(line);
+        std::string t;
+        char delimeter = ',';
+        std::vector<std::string> sequence_vector;
+        while (std::getline(ss, t, delimeter)) {
+            sequence_vector.push_back(t);
+        }
+        sequences.push({std::stoul(sequence_vector[0]), sequence_vector[1], sequence_vector[2]});
+
+        if (sequences.size() == batch_size) {
+            auto results = process_sequences(sequences);
+            write_aligned_sequence_file(results, output_file);
+        }
+    }
+
     auto results = process_sequences(sequences);
     write_aligned_sequence_file(results, output_file);
 }
