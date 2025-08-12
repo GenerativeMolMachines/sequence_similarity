@@ -1,5 +1,4 @@
 #include <chrono>
-#include <iomanip>
 #include <cstdint>
 #include <iostream>
 #include <fstream>
@@ -78,7 +77,12 @@ if (argc < 2) {
     std::uint16_t batch_size = 1024;
     std::uint64_t batch_counter = 0;
 
+    std::uint64_t line_counter = 0;
     while (std::getline(file, line)) {
+        if (line_counter == 0) {
+            line_counter++;
+            continue;
+        }
         std::stringstream ss(line);
         std::string t;
         char delimeter = ',';
@@ -87,6 +91,7 @@ if (argc < 2) {
             sequence_vector.push_back(t);
         }
         sequences.push({std::stoul(sequence_vector[0]), sequence_vector[1], sequence_vector[2]});
+        line_counter++;
 
         if (sequences.size() == batch_size) {
             auto batch_start_time = std::chrono::system_clock::now();
