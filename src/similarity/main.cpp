@@ -1,3 +1,5 @@
+#include <chrono>
+#include <iomanip>
 #include <cstdint>
 #include <iostream>
 #include <fstream>
@@ -17,6 +19,11 @@ if (argc < 2) {
     std::string output_file;
     bool input_set = false;
     bool output_set = false;
+
+    auto start_time = std::chrono::system_clock::now();
+    std::time_t start_time_c = std::chrono::system_clock::to_time_t(start_time);
+
+    std::cout << "Start time: " << std::ctime(&start_time_c);
 
     for (int i = 1; i < argc; i++) {
         std::string arg = argv[i];
@@ -69,6 +76,7 @@ if (argc < 2) {
     std::string sequence;
 
     std::uint16_t batch_size = 1024;
+    std::uint64_t batch_counter = 0;
 
     while (std::getline(file, line)) {
         std::stringstream ss(line);
@@ -81,11 +89,27 @@ if (argc < 2) {
         sequences.push({std::stoul(sequence_vector[0]), sequence_vector[1], sequence_vector[2]});
 
         if (sequences.size() == batch_size) {
+            auto batch_start_time = std::chrono::system_clock::now();
+
             auto results = process_sequences(sequences);
             write_aligned_sequence_file(results, output_file);
+
+            batch_counter++;
+
+            auto batch_end_time = std::chrono::system_clock::now();
+            std::time_t batch_end_time_c = std::chrono::system_clock::to_time_t(batch_end_time);
+            std::cout << "Batch completed at " << std::ctime(&batch_end_time_c);
+
+            std::cout << "Time taken on batch: " << std::chrono::duration_cast<std::chrono::seconds>(batch_end_time - batch_start_time).count() << " ms" << std::endl;
+            std::cout << "Batches completed: " << batch_counter << std::endl;
         }
     }
 
     auto results = process_sequences(sequences);
     write_aligned_sequence_file(results, output_file);
+
+    auto end_time = std::chrono::system_clock::now();
+    std::time_t end_time_c = std::chrono::system_clock::to_time_t(end_time);
+    std::cout << "Total time taken: " << std::chrono::duration_cast<std::chrono::seconds>(end_time - start_time).count() << " seconds" << std::endl;
+    std::cout << "End time: " << std::ctime(&end_time_c) << std::endl;
 }
