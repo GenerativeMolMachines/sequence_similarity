@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="Darwin-clang++"
+	BuildStamp="20250802-1858-Experimental"
+	Name="nikolyas-Laptop.local"
+	Generator="ctest-3.31.1"
+	CompilerName="/usr/bin/clang++"
+	CompilerVersion="17.0.0.17000013"
+	OSName="macOS"
+	Hostname="nikolyas-Laptop.local"
+	OSRelease="15.5"
+	OSVersion="24F74"
+	OSPlatform="arm64"
+	Is64Bits="1"
+	VendorString="Apple"
+	VendorID="Apple"
+	FamilyID="0"
+	ModelID="0"
+	ModelName="Apple M1 Pro"
+	ProcessorCacheSize="131072"
+	NumberOfLogicalCPU="8"
+	NumberOfPhysicalCPU="8"
+	TotalVirtualMemory="2048"
+	TotalPhysicalMemory="16384"
+	LogicalProcessorsPerPhysical="8"
+	ProcessorClockFrequency="0"
+	>
+	<Testing>
+		<StartDateTime>Aug 02 21:58 MSK</StartDateTime>
+		<StartTestTime>1754161093</StartTestTime>
+		<TestList/>
+		<EndDateTime>Aug 02 21:58 MSK</EndDateTime>
+		<EndTestTime>1754161093</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>

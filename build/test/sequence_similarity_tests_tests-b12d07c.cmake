@@ -1,0 +1,7 @@
+add_test( match_score_simple /Users/nikolya/code/lab/sequence_similarity/build/test/sequence_similarity_tests match_score_simple  )
+set_tests_properties( match_score_simple PROPERTIES WORKING_DIRECTORY /Users/nikolya/code/lab/sequence_similarity/build/test)
+add_test( global_alignment_simple /Users/nikolya/code/lab/sequence_similarity/build/test/sequence_similarity_tests global_alignment_simple  )
+set_tests_properties( global_alignment_simple PROPERTIES WORKING_DIRECTORY /Users/nikolya/code/lab/sequence_similarity/build/test)
+add_test( global_alignment_basic /Users/nikolya/code/lab/sequence_similarity/build/test/sequence_similarity_tests global_alignment_basic  )
+set_tests_properties( global_alignment_basic PROPERTIES WORKING_DIRECTORY /Users/nikolya/code/lab/sequence_similarity/build/test)
+set( sequence_similarity_tests_TESTS match_score_simple global_alignment_simple global_alignment_basic)
