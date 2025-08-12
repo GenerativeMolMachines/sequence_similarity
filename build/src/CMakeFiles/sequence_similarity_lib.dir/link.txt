@@ -1,2 +1,0 @@
-/usr/bin/ar qc libsequence_similarity_lib.a CMakeFiles/sequence_similarity_lib.dir/similarity/utils/global_alignment.cpp.o CMakeFiles/sequence_similarity_lib.dir/similarity/utils/helpers.cpp.o
-/usr/bin/ranlib libsequence_similarity_lib.a

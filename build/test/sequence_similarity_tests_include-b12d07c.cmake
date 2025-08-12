@@ -1,5 +1,0 @@
-if(EXISTS "/Users/nikolya/code/lab/sequence_similarity/build/test/sequence_similarity_tests_tests-b12d07c.cmake")
-  include("/Users/nikolya/code/lab/sequence_similarity/build/test/sequence_similarity_tests_tests-b12d07c.cmake")
-else()
-  add_test(sequence_similarity_tests_NOT_BUILT-b12d07c sequence_similarity_tests_NOT_BUILT-b12d07c)
-endif()
